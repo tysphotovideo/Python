@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center">Welcome {{user.first_name}}!!!</h1>
+    <div class="container d-flex justify-content-around">
+        <a href="/logout" class="btn btn-info">Logout</a>
+        <a href="/artists/new" class="btn btn-primary">Create Recipe</a>
+
+    </div>
+</div>
+
+    {% if artists %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Under</th>
+                    <th>Posted By</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for artist in artists %}
+                    <tr>
+                        <td>{{ artist.name }}</td>
+                        <td>{{ artist.under }}</td>
+                        <td>{{ artist.user.first_name }}</td>
+                        <td>
+
+                            <a class="btn btn-primary" href="/artists/{{ artist.id }}">View</a>
+                            {% if session["user_id"] == artist.users_id %}
+                            <a class="btn btn-info" href="/artists/{{ artist.id }}/edit">Edit</a>
+                            <a class="btn btn-danger" href="/artists/{{ artist.id }}/delete">Delete</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-info">We don't have recipes, be the first! <a href="/artists/new">Click here</a> to create a recipe</div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <div class="container">
+        <h1>{{artist.name}}</h1>
+        <h2>{{artist.user_id}}</h2>
+
+    </div>    
+    <div class="border p-2 mb-2">
+        <h5>Description: {{ artist.description }}</h5>
+        <h5>Under 30 minutes? {{ artist.under }}</h5>
+        <h5>Instructions: {{ artist.instructions }}</h5>
+        <h5>Date Made: {{ artist.date_made }}</h5>
+
+    </div>
+
+    
+{% endblock %}

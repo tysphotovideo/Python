@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <title>Edit Dojo</title>
+</head>
+<body>
+    <div>
+        <h1>Edit {{ dojo.name }}</h1>
+        <a href="/">Home</a>
+    </div>
+    <form action="/dojos/update" method="post" class="col-6 mx-auto">
+        <input type="hidden" name="id" value="{{ dojo.id }}">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" name="name" class="form-control" value="{{ dojo.name }} ">
+        </div>
+        <div class="">
+            <input type="submit" value="Update Dojo" class="btn btn-success">
+            <a href="/dojos.html">Show User</a>
+        </div>
+
+    </form>
+</body>
+</html>

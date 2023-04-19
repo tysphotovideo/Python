@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+</div>
+<div class="d-flex flex-column mb-3 p-2 ">
+    {{user.full_name()}}
+    <a href="/logout" class="btn btn-info">Logout</a>
+    <a href="/sightings" class="btn btn-primary">Dashboard</a>
+
+</div>
+</nav>
+<div class="container">
+    <div class="row">
+
+        <div class="col-6">
+<form method="POST" action="/sightings/{{sight.id}}/update">
+    <input type="hidden" name="user_id" value=" {{ user.id }}">
+    {% with messages = get_flashed_messages(category_filter=['sighting']) %}
+    {% if messages %}
+        <div class="alert alert-danger" role="alert">
+        <strong>AHHHHHHH!!!!</strong>
+            {% for message in messages %}
+            <p>{{message}}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+    {% endwith %}
+    <div class="mb-3">
+        <label for="name">Location</label>
+        <input type="text" class="form-control" name="location"value="{{sight.location}}">
+    </div>
+    <div class="mb-3">
+        <label for="description">What Happened?</label>
+        <input type="text" class="form-control" id="what" name="what" value="{{sight.what}}">
+    </div>
+    <div class="mb-3">
+        <label for="instructions">Date of Sighting</label>
+        <input type="date" class="form-control" id="date" name="date"value="{{sight.date}}">
+    </div>
+    <div class="mb-3">
+        <label for="num_sas">Number of Sasquatches</label>
+        <input type="number" class="form-control" id="num_sas" name="num_sas"value="{{sight.num_sas}}">
+    </div>
+    
+    <input type="submit" class="btn btn-primary" value="Update Sighting">
+</form>
+        </div>
+    </div>
+</div>
+{% endblock %}

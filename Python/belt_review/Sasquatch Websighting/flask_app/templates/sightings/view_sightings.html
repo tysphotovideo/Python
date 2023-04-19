@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+</div>
+<div class="d-flex flex-column mb-3 p-2 ">
+    {{user.full_name()}}
+    <a href="/logout" class="btn btn-info">Logout</a>
+    <a href="/sightings" class="btn btn-primary">Dashboard</a>
+
+</div>
+</nav>
+    
+    <div class="border p-2 mb-2">
+        <h2>{{ sight.location }} on {{sight.date}}</h2>
+        <h5>What Happened?: {{ sight.what }}</h5>
+        <h5>Number of Sasquatches: {{ sight.num_sas }}</h5>
+        {%for s in sights%}
+        {%if s.id == sight.id%}
+        <h5>Reported by: {{ s.user.full_name() }}</h5>
+        {%endif%}
+        {%endfor%}
+        
+    </div>
+
+    
+{% endblock %}
